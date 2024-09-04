@@ -1,12 +1,619 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang = "en">
 <head>
-    <meta charset="UTF-8">
-    <title>Your Blog's Name</title>
+    <meta charset = "UTF-8">
+    <link href = "https://fonts.googleapis.com/css2?family=Ubuntu+Mono:wght@400;700&display=swap" rel = "stylesheet">
+    <link href = "https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&display=swap" rel = "stylesheet">
+    <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+
+    <title>Abhishek Tomar</title>
+    <link rel = "icon" type = "image/png" href = "assets/cool_emoji.png">
+
+    <!-- Essential META Tags -->
+    <meta property = "og:title" content = "Abhishek Tomar - Portfolio" />
+    <meta property = "og:description" content = "A showcase of my work and projects." />
+    <meta property = "og:image" content = "assets/gradient_banner_small.png" />
+    <meta property = "og:url" content = "https://tomar840.github.io/portfolio/" />
+
+    <!-- Additional META Tags -->
+    <meta property = "og:type" content = "website"/>
+    <meta property = "og:site_name" content = "Abhishek Tomar's Portfolio"/>
 </head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BQK9SFR85H"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-BQK9SFR85H');
+</script>
+
+<style>
+    body {
+        font-family: 'Ubuntu Mono', monospace;
+    }
+
+    .profile-card {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px;
+        max-width: 800px;
+        margin: 0 auto;
+        /* background-color: blue; */
+    }
+
+    .text-content {
+        padding-right: 40px;
+    }
+
+    .text-content h1 {
+        margin: 0;
+        font-size: 24px;
+        font-weight: 700;
+        color: rgb(4, 7, 17);
+    }
+
+    .text-content p {
+        line-height: 1.25;
+        margin: 5px 0;
+        color: rgb(120, 126, 137);
+    }
+
+    .social-icon-container {
+        display: flex;
+        align-items: center;
+        margin-top: 10px;
+    }
+
+    .social-icon {
+        margin-right: 15px;
+        text-decoration: none;
+    }
+
+    .social-icon img {
+        display: block;
+        width: 25px;
+        height: 30px;
+        object-fit: contain;
+    }
+
+    .image-container {
+        padding-left: 80px;
+    }
+
+    .image-container img {
+        width: 100px;
+        height: auto;
+        border-radius: 10px;
+    }
+
+    .about-section {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 10px;
+        margin-top: 0px;
+        /* background-color: red; */
+    }
+
+    .about-section h1 {
+        font-size: 24px;
+        margin-bottom: 10px;
+        color: rgb(4, 7, 17);
+    }
+
+    .about-section p {
+        font-size: 16px;
+        margin-top: 0;
+        line-height: 1.25;
+        color: rgb(120, 126, 137);
+    }
+
+    .work-experience {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 10px;
+        /* background-color: purple; */
+    }
+
+    .work-experience h1 {
+        font-size: 24px;
+        margin-bottom: 20px;
+        color: rgb(4, 7, 17);
+    }
+
+    .job, .degree {
+        margin-bottom: 20px;
+    }
+
+    .job-title-and-company, .degree-title-and-company {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 5px;
+    }
+
+    .company-name, .degree-name {
+        font-weight: bold;
+        margin-right: 5px;
+    }
+
+    .job-position {
+        font-family: 'Source Code Pro', monospace;
+    }
+
+    .work-type {
+        margin-right: 5px;
+        background-color: rgb(234, 232, 232);
+        border-radius: 5px;
+        font-size: 14px;
+        padding: 2px 10px;
+        display: inline-block;
+    }
+
+    .job-dates, .degree_dates {
+        margin-left: auto;
+    }
+
+    .job > p:first-of-type {
+        margin: 5px 0 5px 0;
+    }
+
+    .job-description {
+        font-size: 14px;
+        line-height: 1.25;
+        margin: 0;
+        color: rgb(120, 126, 137);
+    }
+
+    .job-description-list {
+        font-size: 14px;
+        line-height: 1.25;
+        margin: 0;
+        color: rgb(120, 126, 137);
+        padding-left: 12px;
+        /* list-style-type: none; */
+    }
+
+    .job-description-tech {
+        font-size: 14px;
+        line-height: 1.25;
+        margin: 0;
+        color: rgb(120, 126, 137);
+        font-style: italic;
+    }
+
+    .education {
+        max-width: 800px;
+        margin: 0px auto;
+        padding: 10px;
+        /* background-color:aquamarine; */
+    }
+
+    .education h1, .skills-container h1, .projects-container h1 {
+        font-size: 24px;
+        margin-bottom: 20px;
+        color: rgb(4, 7, 17);
+    }
+
+    .degree-description {
+        line-height: 1.25;
+        margin: 0;
+        font-family: 'Source Code Pro', monospace;
+    }
+
+    .degree-grades {
+        margin-top: 3px;
+        font-style: italic;
+        font-size: 14px;
+        color: rgb(120, 126, 137);
+    }
+
+    .skills-container {
+        max-width: 800px;
+        margin: 0px auto;
+        padding: 10px;
+        /* background-color:brown; */
+    }
+
+    .skill-category {
+        font-weight: bold;
+    }
+
+    .skill-pill {
+        margin-right: 5px;
+        background-color: rgb(66, 70, 81);
+        color: rgb(244, 244, 244);
+        border-radius: 5px;
+        font-size: 14px;
+        padding: 2px 10px;
+        display: inline-block;
+        margin-bottom: 10px;
+    }
+
+    .projects-container {
+        max-width: 800px;
+        margin: 0px auto;
+        padding: 10px;
+        /* background-color: bisque; */
+    }
+
+    .projects_row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+    }
+
+    .projects_card {
+        flex-basis: calc(50% - 10px); /* Subtract margin from 50% width */
+        border-radius: 10px;
+        border: 1px solid rgb(239, 237, 237);
+        /* box-shadow: 0 0 5px rgba(0,0,0,0.1); */
+        padding: 10px;
+        margin: 10px;
+    }
+
+    .projects_card:hover {
+        box-shadow: 0 0 35px rgba(0,0,0,0.1);
+    }
+
+    .projects_card_head {
+        display: flex; /* Enables flexbox layout */
+        justify-content: space-between; /* Positions children on extreme ends */
+        align-items: center; /* Aligns children vertically */
+    }
+
+    .projects_card h3 {
+        color: rgb(4, 7, 17);
+        /* margin: auto; */
+        margin: 0;
+    }
+
+    .projects_card p {
+        color: rgb(120, 126, 137);
+        margin: 10px auto;
+    }
+
+    .projects_card_skills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0px;
+    }
+
+    .projects-skill-pill {
+        margin-right: 10px;
+        background-color: rgb(234, 232, 232);
+        color: rgb(26, 25, 25);
+        border-radius: 5px;
+        font-size: 14px;
+        padding: 2px 10px;
+        display: inline-block;
+        margin-bottom: 10px;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .projects_row {
+            flex-direction: column;
+        }
+
+        .projects_card {
+            flex-basis: 100%;
+        }
+    }
+
+</style>
+
 <body>
-    <h1>Welcome to My Blog</h1>
-    <p>This is a placeholder for my blog posts.</p>
+    &nbsp;
+
+    <div class = "profile-card">
+        <div class = "text-content">
+            <h1>Abhishek Tomar</h1>
+            <p style = "font-size: 16px;">Senior Machine Learning Engineer focused on building end-to-end AI products.</p>
+            <p style = "font-size: 14px;">Bengaluru, BLR, INDIA</p>
+            <div class = "social-icon-container">
+                <a href = "tel:+918826085716" class = "social-icon"><img src = "assets/phone_icon.png" alt = "Phone Icon"></a>
+                <a href = "mailto:tomar.abhishek840@gmail.com" class = "social-icon"><img src = "assets/gmail_icon.png" alt = "Mail Icon"></a>
+                <a href = "https://linkedin.com/in/tomar840/" class = "social-icon"><img src = "assets/linkedin_icon.png" alt = "Linkedin Icon"></a>
+                <a href = "https://github.com/tomar840" class = "social-icon"><img src = "assets/github_icon.png" alt = "Github Icon"></a>
+                <a href = "https://leetcode.com/tomar840" class = "social-icon"><img src = "assets/leetcode_icon.png" alt = "Leetcode Icon" style = "height: 24px;"></a>
+            </div>
+        </div>
+        <div class = "image-container">
+            <img src = "assets/Photo.jpeg" alt = "Bartosz Jarocki"/>
+        </div>
+    </div>
+
+    <div class = "about-section">
+        <h1>About</h1>
+        <p>As a Senior Machine Learning Engineer with over 6 years of experience, I have successfully led multiple products from concept to launch, often owning entire development cycles independently. My experience spans across NLP and computer vision projects, where I have consistently contributed to fast-paced, high-impact teams. I am particularly passionate about exploring and implementing large language models (LLMs) for impactful use cases in India.</p>
+    </div>
+
+    <div class = "work-experience">
+        <h1>Work Experience</h1>
+
+        <div class = "job">
+            <div class = "job-title-and-company">
+                <span class = "company-name">Soroco</span>
+                <span class = "job-dates">Nov 2023 - Present</span>
+            </div>
+            <p class = "job-position">Senior Machine Learning Engineer</p>
+            <p class = "job-description"></p>
+            <ul class = "job-description-list">
+                <li>
+                    <strong>FlowGraphs - </strong> Developed a key feature for team-based knowledge representation using NLP techniques
+                    by leveraging <strong>open-source Large Language Models (LLMs)</strong> like <strong>Mistral and Llama3</strong>. This involves fine-
+                    tuning these models using the <strong>QLoRA (peft)</strong> framework, leading to deployment across 50+ industry-
+                    leading companies and securing a million-dollar deal with a Fortune 500 company.
+                </li>
+                <li>
+                    <strong>QueryHub - </strong> Designed and implemented an advanced internal knowledge retrieval platform utilizing
+                    <strong>Retrieval-Augmented Generation (RAG)</strong>, aimed at optimizing the search and access process within the
+                    company's expansive wikis. This system uses open-source models like <strong>Llama3 and Mistral</strong>, <strong>ANNOY</strong> for
+                    Approximate Nearest Neighbor <strong>(ANN)</strong> searches, and the <strong>Bert</strong> transformer for precise embeddings,
+                    enhancing productivity by providing quick access to relevant information.
+                </li>
+                <li>
+                    <strong>AutoEval - </strong>Designed and implemented an evaluation pipeline for benchmarking the performance of
+                    diverse open-source Large Language Models <strong>(LLMs)</strong> against tailored use-case scenarios. This pipeline,
+                    deployed using <strong>docker</strong>, significantly reduced manual labor by hundreds of hours.
+                </li>
+            </ul>
+        </div>
+
+        <div class = "job">
+            <div class = "job-title-and-company">
+                <span class = "company-name">Byjus</span>
+                <!-- <span class = "work-type">Remote</span> -->
+                <span class = "job-dates">Feb 2021 - Oct 2023</span>
+            </div>
+            <p class = "job-position">Machine Learning Engineer</p>
+            <ul class = "job-description-list">
+                <li>
+                    <strong>Byjus QnA Search - </strong>Developed a robust, <strong>high-traffic</strong> question search system handling over <strong>2 million req/day</strong>, integrating Similar Question and Auto Completion modules. Used <strong>ElasticSearch</strong>, <strong>Transformer(Bert)</strong>, ANN for effective question suggestions and Learning-To-Rank model for result ranking. This module helps in generating <strong>~$600k/month</strong> in revenue through sales leads.
+                </li>
+                <li>
+                    <strong>Universal Search Enhancement - </strong>Developed universal search feature for Byjus app to fetch resources beyond just questions, utilizing the Bert Transformer for query intent recognition and <strong>entity extraction</strong>, and deployed using <strong>Docker</strong>. Achieved an <strong>F1 score of 0.96</strong>, with Text SSR at <strong>91%</strong> and Image SSR around <strong>60%</strong> in production.
+                </li>
+                <li>
+                    <strong>ByjuWizz - </strong>Developed hyper-personalised products using <strong>Large Language Models (LLMs)</strong>, specifically GPT4, with prompt engineering, <strong>Langchain</strong>, and <strong>Pinecone</strong> for premium users. Products include Teacher GPT for problem-solving guidance, Math GPT for step-by-step math solutions, and a textbook-specific doubt solver.
+                </li>
+                <li>
+                    <strong>ByjusLLM - </strong>Evaluated and fine-tuned open-source Large Language Models (LLM) like LLaMA, LLaMA2, Falcon for applications in math reasoning and doubt-solving chatbots. The project involved fine-tuning LLMs using <strong>QLoRA</strong> and Peft framework. The LLaMA 13B model achieved an accuracy of <strong>13%</strong> on GSM8k.
+                </li>
+                <li>
+                    <strong>Finetuning Transformer - </strong>Fine-tuned the Bert transformer on ed-Tech datasets using <strong>siamese</strong> and highway network architectures. Implemented <strong>contrastive</strong>, cosine, and cross-cross-entropy loss for similarity and classification tasks.
+                </li>
+                <li>
+                    <strong>GAN based watermark removal - </strong>Built a cGAN-based model for watermark removal from solution images, aiding Byjus DB data ingestion. Utilized OpenCV, U-Net with pre-trained <strong>ResNet-50</strong>, PatchCNN.
+                </li>
+                <li>
+                    <strong>Upper Body Detector - </strong>Fine-tuned <strong>YOLOv5</strong> for upper body object detection on annotated classroom data. This model is used for classroom engagement. Achieved <strong>mAP50-95</strong> of <strong>0.922</strong> on YOLOv5l6.
+                </li>
+                <li>
+                    <strong>Relevant Keyword Extraction - </strong>Created an NLP model using <strong>Sentence-BERT</strong> for keyword extraction from text, aiding content mapping to videos/blogs through sentence embeddings.
+                </li>                
+            </ul>
+        </div>
+        
+        <div class = "job">
+            <div class = "job-title-and-company">
+                <span class = "company-name">Axtria</span>
+                <!-- <span class = "work-type">Remote</span> -->
+                <span class = "job-dates">June 2018 - Feb 2021</span>
+            </div>
+            <p class = "job-position">Data Scientist</p>
+            <ul class = "job-description-list">
+                <li>
+                    <strong>HCP Call Planning - </strong>Developed a call assignment system for Health Care Practitioners across 28 countries, using <strong>unsupervised clustering</strong> and call grids for new drugs. Also managed client engagement and risk analysis.
+                </li>
+                <li>
+                    <strong>Sales Forecasting - </strong>Developed a model to forecast sales for a new drug, identifying the effect of promotions and key performance channels. Utilized <strong>regression</strong> for sales prediction and a <strong>neural network</strong> for channel impact analysis.
+                </li>
+                <li>
+                    <strong>Roster Integration Module Development - </strong>Created a roster integration module for daily employee status tracking and event updates, using <strong>Talend</strong> for data integration and <strong>PostgreSQL</strong> for handling client input data quality and event creation.
+                </li>                
+            </ul>
+        </div>
+    </div>
+
+    <div class = "education">
+        <h1>Education</h1>
+
+        <div class = "degree">
+            <div class = "degree-title-and-company">
+                <span class = "degree-name">IIT Delhi, India</span>
+                <span class = "degree-dates">2016 - 2018</span>
+            </div>
+            <p class = "degree-description">M.Tech in Computer Technology</p>
+            <p class = "degree-grades">GPA: 7.75 / 10</p>
+        </div>
+
+        <div class = "degree">
+            <div class = "degree-title-and-company">
+                <span class = "degree-name">BIET Jhansi</span>
+                <span class = "degree-dates">2012 - 2016</span>
+            </div>
+            <p class = "degree-description">B.Tech in Electronics & Communication Engineering</p>
+            <p class = "degree-grades">GPA: 8.06 / 10</p>
+        </div>
+    </div>
+
+    <div class = "skills-container">
+        <h1>Skills</h1>
+
+        <div class = "skills-tab">
+            <span class = "skill-category">Programming - </span>
+            <span class = "skill-pill">Python</span>
+            <span class = "skill-pill">C++</span>
+            <span class = "skill-pill">R</span>
+            <span class = "skill-pill">SQL</span>
+            <span class = "skill-pill">PostgreSQL</span>
+            <span class = "skill-pill">Matlab</span>
+        </div>
+
+        <div class = "skills-tab">
+            <span class = "skill-category">Machine Learning - </span>
+            <span class="skill-pill">PyTorch</span>
+            <span class="skill-pill">Keras</span>
+            <span class="skill-pill">Tensorflow</span>
+            <span class="skill-pill">NumPy</span>
+            <span class="skill-pill">SciPy</span>
+            <span class="skill-pill">Pandas</span>
+            <span class="skill-pill">ScikitLearn</span>
+            <span class="skill-pill">OpenCV</span>
+            <span class="skill-pill">PEFT (LoRA)</span>
+            <span class="skill-pill">ONNX</span>
+            <span class="skill-pill">Transformers (BERT)</span>
+            <span class="skill-pill">LLM</span>
+            <span class="skill-pill">FAISS</span>
+            <span class="skill-pill">PineCone</span>
+
+        </div>
+
+        <div class = "skills-tab">
+            <span class = "skill-category">Backend - </span>
+            <span class = "skill-pill">Flask</span>
+            <span class = "skill-pill">AWS EC2</span>
+            <span class = "skill-pill">AWS S3</span>
+            <span class = "skill-pill">Docker</span>
+            <span class = "skill-pill">Kubernetes</span>
+            <span class = "skill-pill">Git</span>
+            <span class = "skill-pill">Grafana</span>
+        </div>
+
+        <div class = "skills-tab">
+            <span class = "skill-category">Databases - </span>
+            <span class = "skill-pill">MongoDB</span>
+            <span class = "skill-pill">Redis</span>
+            <span class = "skill-pill">Cassandra</span>
+            <span class = "skill-pill">AWS DynamoDB</span>
+            <span class = "skill-pill">MySQL</span>
+            <span class = "skill-pill">PostgreSQL</span>
+        </div>
+
+    </div>
+
+    <div class="education" style="text-align: left;">
+        <h1>Certifications</h1>
+        <div class="degree">
+            <div class="degree-title-and-company" style="cursor: pointer; display: flex; align-items: center; justify-content: space-between;">
+                <span class="degree-name">Fundamentals of Scalable Data Science (IBM)</span>
+                <div>
+                    <span class="degree-dates">Oct 2019</span>
+                    <!-- <a href="https://github.com/tomar840/Jigyasa.ai" style="margin-left: 14px; color: black;">
+                        <i class="fas fa-external-link-alt"></i>
+                    </a> -->
+                </div>
+            </div>
+            <p class="degree-description" style="font-family: 'Ubuntu Mono', monospace; font-size: 14px; color: rgb(120, 126, 137);">
+                Course covers big data analysis using scalable machine learning techniques and introduces ApacheSpark for large-scale data processing
+            </p>            
+        </div>
+        <div class="degree">
+            <div class="degree-title-and-company" style="cursor: pointer; display: flex; align-items: center; justify-content: space-between;">
+                <span class="degree-name">Introduction to Deep Learning (HSE University)</span>
+                <div>
+                    <span class="degree-dates">Aug 2022</span>
+                    <!-- <a href="https://github.com/tomar840/Jigyasa.ai" style="margin-left: 14px; color: black;">
+                        <i class="fas fa-external-link-alt"></i>
+                    </a> -->
+                </div>
+            </div>
+            <p class="degree-description" style="font-family: 'Ubuntu Mono', monospace; font-size: 14px; color: rgb(120, 126, 137);">
+                Course provides foundational knowledge on deep learning concepts, techniques, and their application in various fields
+            </p>            
+        </div>
+        <div class="degree">
+            <div class="degree-title-and-company" style="cursor: pointer; display: flex; align-items: center; justify-content: space-between;">
+                <span class="degree-name">Deep Generative Models (IISC Bengaluru)</span>
+                <div>
+                    <span class="degree-dates">June 2023</span>
+                    <!-- <a href="https://github.com/tomar840/Jigyasa.ai" style="margin-left: 14px; color: black;">
+                        <i class="fas fa-external-link-alt"></i>
+                    </a> -->
+                </div>
+            </div>
+            <p class="degree-description" style="font-family: 'Ubuntu Mono', monospace; font-size: 14px; color: rgb(120, 126, 137);">
+                Course explores the mathematics and application of deep learning models designed to generate new data.
+            </p>
+            <p class = "degree-grades">Grade: A+</p>            
+        </div>
+    </div>
+    
+
+    <div class="projects-container">
+        <h1>Projects</h1>
+    
+        <div class="projects_row">
+            <div class="projects_card" onclick='location.href="https://github.com/tomar840/Jigyasa.ai";' style="cursor: pointer;">
+                <a href="https://github.com/tomar840/Jigyasa.ai" class="hidden-link"></a>
+                <div class="projects_card_head">
+                    <h3>Jigyasa.ai</h3>
+                    <a class="social-icon"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
+                <p>Developed a <strong>search assistant</strong> which is built on back of <strong>open source LLMs</strong> and search engine.
+                    Utilized <strong>Ollama</strong> for inference optimization.</p>
+                <div class="projects_card_skills">
+                    <span class="projects-skill-pill">Python</span>
+                    <span class="projects-skill-pill">PyTorch</span>
+                    <span class="projects-skill-pill">LLM</span>
+                    <span class="projects-skill-pill">OLLAMA</span>
+                </div>
+            </div>
+        
+            <div class="projects_card" onclick='location.href="https://github.com/tomar840/MathLLM";' style="cursor: pointer;">
+                <a href="https://github.com/tomar840/MathLLM" class="hidden-link"></a>
+                <div class="projects_card_head">
+                    <h3>MathLLM</h3>
+                    <a class="social-icon"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
+                <p>A novel LLM, based on <strong>Mistral-7B</strong>, SFT finetuned model, using <strong>QLoRA</strong>, on open-source + proprietary data. Improving Mistral accuracy on <strong>GSM8K</strong> by <strong>+22%</strong>.</p>
+                <div class="projects_card_skills">
+                    <span class="projects-skill-pill">LLM</span>
+                    <span class="projects-skill-pill">Mistral</span>
+                    <span class="projects-skill-pill">QLoRA</span>
+                </div>
+            </div>
+        </div>
+    
+        <div class="projects_row">
+            <div class="projects_card" onclick='location.href="https://github.com/tomar840/two-stream-fusion-for-action-recognition-in-videos";' style="cursor: pointer;">
+                <a href="https://github.com/tomar840/two-stream-fusion-for-action-recognition-in-videos" class="hidden-link"></a>
+                <div class="projects_card_head">
+                    <h3>two-stream-fusion-for-action-recognition-in-videos</h3>
+                    <a class="social-icon"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
+                <p>Developed an advanced <strong>action recognition</strong> system using a <strong>convolutional two-stream network</strong>, processing spatial and temporal data from the UCF101 dataset with RGB frames and optical flow images. Utilized <strong>VGG-19 model</strong> for the classification task. 
+                    This dual approach optimized the model's accuracy, achieving up to <strong>99.01%</strong> on first 20 classes and 68.23% across all classes.</p>
+                <div class="projects_card_skills">
+                    <span class="projects-skill-pill">Python</span>
+                    <span class="projects-skill-pill">PyTorch</span>
+                    <span class="projects-skill-pill">CNN</span>
+                    <span class="projects-skill-pill">OpenCV</span>
+                </div>
+            </div>
+    
+            <div class="projects_card" onclick='location.href="https://github.com/tomar840/identification-of-the-dominant-speaker-in-short-videos";' style="cursor: pointer;">
+                <a href="https://github.com/tomar840/identification-of-the-dominant-speaker-in-short-videos" class="hidden-link"></a>
+                <div class="projects_card_head">
+                    <h3>Identification of dominant speaker</h3>
+                    <a class="social-icon"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
+                <p>This project aims at building a classification model that identifies the dominant speaker in short videos using the <strong>computer vision</strong> techniques. Used <strong>transfer learning</strong> on pre-trained <strong>CNN</strong></p>
+                <div class="projects_card_skills">
+                    <span class="projects-skill-pill">Python</span>
+                    <span class="projects-skill-pill">Pytorch</span>
+                    <span class="projects-skill-pill">transfer-learning</span>
+                    <span class="projects-skill-pill">object recognition</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
 </body>
 </html>
-
