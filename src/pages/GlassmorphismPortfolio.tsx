@@ -493,8 +493,7 @@ const GlassmorphismPortfolio = () => {
             viewport={{ once: true }}
           >
             <p className="text-white/30 text-sm">
-              © {new Date().getFullYear()} {personalInfo.name}. Crafted with{" "}
-              <span className="text-primary">♥</span>
+              © {new Date().getFullYear()} {personalInfo.name}
             </p>
           </motion.div>
         </footer>

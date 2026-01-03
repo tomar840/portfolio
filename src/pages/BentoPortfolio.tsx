@@ -305,7 +305,7 @@ const BentoPortfolio = () => {
           transition={{ delay: 0.8 }}
           className="text-center py-12 text-sm text-muted-foreground"
         >
-          © {new Date().getFullYear()} {personalInfo.name}. Built with <span className="text-primary">♥</span>
+          © {new Date().getFullYear()} {personalInfo.name}
         </motion.footer>
       </div>
     </div>
