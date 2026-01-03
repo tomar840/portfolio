@@ -1,23 +1,23 @@
 import { Moon, Sun } from "lucide-react";
 import { motion } from "framer-motion";
+import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 
 const ThemeToggle = () => {
-  const [isDark, setIsDark] = useState(false);
+  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
 
+  // Avoid hydration mismatch
   useEffect(() => {
-    const stored = localStorage.getItem("theme");
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    const shouldBeDark = stored === "dark" || (!stored && prefersDark);
-    setIsDark(shouldBeDark);
-    document.documentElement.classList.toggle("dark", shouldBeDark);
+    setMounted(true);
   }, []);
 
+  if (!mounted) return null;
+
+  const isDark = theme === "dark";
+
   const toggle = () => {
-    const newValue = !isDark;
-    setIsDark(newValue);
-    document.documentElement.classList.toggle("dark", newValue);
-    localStorage.setItem("theme", newValue ? "dark" : "light");
+    setTheme(isDark ? "light" : "dark");
   };
 
   return (
