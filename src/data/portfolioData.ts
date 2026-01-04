@@ -15,11 +15,13 @@ export const workExperience = [
   {
     company: "Uber",
     position: "Senior Software Engineer - ML",
-    dates: "Dec 2024 - Present",
+    dates: "Oct 2025 - Present",
     highlights: [
       {
         title: "Engineering Security with GenAI",
-        description: "Working on solving engineering security challenges using Generative AI, building innovative solutions to enhance Uber's security infrastructure through machine learning and LLM-based approaches.",
+        description: [
+          "Working on solving engineering security challenges using Generative AI, building innovative solutions to enhance Uber's security infrastructure through machine learning and LLM-based approaches."
+        ],
         keywords: ["Generative AI", "Security", "LLM"],
       },
     ],
@@ -31,7 +33,10 @@ export const workExperience = [
     highlights: [
       {
         title: "InsightVertex",
-        description: "Led the development of a scalable RAG architecture, integrating robust vector search with a hybrid of SoTA open-source & commercial LLMs for precise semantic query processing and deriving actionable insights from unstructured contact center data. Drove adoption across 20+ clients by architecting for high-throughput, low-latency model serving, enabling proactive customer problem resolution.",
+        description: [
+          "Led the development of a scalable RAG architecture, integrating robust vector search with a hybrid of SoTA open-source & commercial LLMs for precise semantic query processing and deriving actionable insights from unstructured contact center data.",
+          "Drove adoption across 20+ clients by architecting for high-throughput, low-latency model serving, enabling proactive customer problem resolution."
+        ],
         keywords: ["RAG", "LLM", "Vector Search", "20+ Clients"],
       },
     ],
@@ -43,17 +48,26 @@ export const workExperience = [
     highlights: [
       {
         title: "FlowGraphs",
-        description: "Developed a key feature for team-based knowledge representation using NLP techniques by leveraging open-source Large Language Models (LLMs) like Mistral and Llama3. This involves fine-tuning these models using the QLoRA (peft) framework, leading to deployment across 50+ industry-leading companies and securing a million-dollar deal with a Fortune 500 company.",
+        description: [
+          "Developed a key feature for team-based knowledge representation using NLP techniques by leveraging open-source Large Language Models (LLMs) like Mistral and Llama3.",
+          "Fine-tuned models using the QLoRA (peft) framework, leading to deployment across 50+ industry-leading companies and securing a million-dollar deal with a Fortune 500 company."
+        ],
         keywords: ["Mistral", "Llama3", "QLoRA", "peft"],
       },
       {
         title: "QueryHub",
-        description: "Designed and implemented an advanced internal knowledge retrieval platform utilizing Retrieval-Augmented Generation (RAG), aimed at optimizing the search and access process within the company's expansive wikis. This system uses open-source models like Llama3 and Mistral, ANNOY for Approximate Nearest Neighbor (ANN) searches, and the Bert transformer for precise embeddings.",
+        description: [
+          "Designed and implemented an advanced internal knowledge retrieval platform utilizing Retrieval-Augmented Generation (RAG), aimed at optimizing the search and access process within the company's expansive wikis.",
+          "Leveraged open-source models like Llama3 and Mistral, ANNOY for Approximate Nearest Neighbor (ANN) searches, and the Bert transformer for precise embeddings."
+        ],
         keywords: ["RAG", "Llama3", "ANNOY", "Bert"],
       },
       {
         title: "AutoEval",
-        description: "Designed and implemented an evaluation pipeline for benchmarking the performance of diverse open-source Large Language Models (LLMs) against tailored use-case scenarios. This pipeline, deployed using docker, significantly reduced manual labor by hundreds of hours.",
+        description: [
+          "Designed and implemented an evaluation pipeline for benchmarking the performance of diverse open-source Large Language Models (LLMs) against tailored use-case scenarios.",
+          "Deployed using docker, significantly reducing manual labor by hundreds of hours."
+        ],
         keywords: ["LLM", "Docker", "Evaluation"],
       },
     ],
@@ -65,32 +79,51 @@ export const workExperience = [
     highlights: [
       {
         title: "Byjus QnA Search",
-        description: "Developed a robust, high-traffic question search system handling over 2 million req/day, integrating Similar Question and Auto Completion modules. Used ElasticSearch, Transformer(Bert), ANN for effective question suggestions and Learning-To-Rank model for result ranking. This module helps in generating ~$600k/month in revenue through sales leads.",
+        description: [
+          "Developed a robust, high-traffic question search system handling over 2 million req/day, integrating Similar Question and Auto Completion modules.",
+          "Used ElasticSearch, Transformer(Bert), ANN for effective question suggestions and Learning-To-Rank model for result ranking.",
+          "This module helps in generating ~$600k/month in revenue through sales leads."
+        ],
         keywords: ["ElasticSearch", "Bert", "2M req/day", "$600k/month"],
       },
       {
         title: "Universal Search Enhancement",
-        description: "Developed universal search feature for Byjus app to fetch resources beyond just questions, utilizing the Bert Transformer for query intent recognition and entity extraction. Achieved an F1 score of 0.96, with Text SSR at 91% and Image SSR around 60% in production.",
+        description: [
+          "Developed universal search feature for Byjus app to fetch resources beyond just questions, utilizing the Bert Transformer for query intent recognition and entity extraction.",
+          "Achieved an F1 score of 0.96, with Text SSR at 91% and Image SSR around 60% in production."
+        ],
         keywords: ["Bert", "F1: 0.96", "Docker"],
       },
       {
         title: "ByjuWizz",
-        description: "Developed hyper-personalised products using Large Language Models (LLMs), specifically GPT4, with prompt engineering, Langchain, and Pinecone for premium users. Products include Teacher GPT for problem-solving guidance, Math GPT for step-by-step math solutions, and a textbook-specific doubt solver.",
+        description: [
+          "Developed hyper-personalised products using Large Language Models (LLMs), specifically GPT4, with prompt engineering, Langchain, and Pinecone for premium users.",
+          "Products include Teacher GPT for problem-solving guidance, Math GPT for step-by-step math solutions, and a textbook-specific doubt solver."
+        ],
         keywords: ["GPT-4", "Langchain", "Pinecone"],
       },
       {
         title: "ByjusLLM",
-        description: "Evaluated and fine-tuned open-source Large Language Models (LLM) like LLaMA, LLaMA2, Falcon for applications in math reasoning and doubt-solving chatbots. The project involved fine-tuning LLMs using QLoRA and Peft framework. The LLaMA 13B model achieved an accuracy of 13% on GSM8k.",
+        description: [
+          "Evaluated and fine-tuned open-source Large Language Models (LLM) like LLaMA, LLaMA2, Falcon for applications in math reasoning and doubt-solving chatbots.",
+          "Fine-tuned LLMs using QLoRA and Peft framework. The LLaMA 13B model achieved an accuracy of 13% on GSM8k."
+        ],
         keywords: ["LLaMA", "QLoRA", "GSM8k"],
       },
       {
         title: "GAN based watermark removal",
-        description: "Built a cGAN-based model for watermark removal from solution images, aiding Byjus DB data ingestion. Utilized OpenCV, U-Net with pre-trained ResNet-50, PatchCNN.",
+        description: [
+          "Built a cGAN-based model for watermark removal from solution images, aiding Byjus DB data ingestion.",
+          "Utilized OpenCV, U-Net with pre-trained ResNet-50, PatchCNN."
+        ],
         keywords: ["cGAN", "U-Net", "ResNet-50"],
       },
       {
         title: "Upper Body Detector",
-        description: "Fine-tuned YOLOv5 for upper body object detection on annotated classroom data. This model is used for classroom engagement. Achieved mAP50-95 of 0.922 on YOLOv5l6.",
+        description: [
+          "Fine-tuned YOLOv5 for upper body object detection on annotated classroom data.",
+          "This model is used for classroom engagement. Achieved mAP50-95 of 0.922 on YOLOv5l6."
+        ],
         keywords: ["YOLOv5", "mAP: 0.922"],
       },
     ],
@@ -102,17 +135,26 @@ export const workExperience = [
     highlights: [
       {
         title: "HCP Call Planning",
-        description: "Developed a call assignment system for Health Care Practitioners across 28 countries, using unsupervised clustering and call grids for new drugs. Also managed client engagement and risk analysis.",
+        description: [
+          "Developed a call assignment system for Health Care Practitioners across 28 countries, using unsupervised clustering and call grids for new drugs.",
+          "Managed client engagement and risk analysis."
+        ],
         keywords: ["Clustering", "28 Countries"],
       },
       {
         title: "Sales Forecasting",
-        description: "Developed a model to forecast sales for a new drug, identifying the effect of promotions and key performance channels. Utilized regression for sales prediction and a neural network for channel impact analysis.",
+        description: [
+          "Developed a model to forecast sales for a new drug, identifying the effect of promotions and key performance channels.",
+          "Utilized regression for sales prediction and a neural network for channel impact analysis."
+        ],
         keywords: ["Regression", "Neural Network"],
       },
       {
         title: "Roster Integration Module",
-        description: "Created a roster integration module for daily employee status tracking and event updates, using Talend for data integration and PostgreSQL for handling client input data quality and event creation.",
+        description: [
+          "Created a roster integration module for daily employee status tracking and event updates.",
+          "Used Talend for data integration and PostgreSQL for handling client input data quality and event creation."
+        ],
         keywords: ["Talend", "PostgreSQL"],
       },
     ],

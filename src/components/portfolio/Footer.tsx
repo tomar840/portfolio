@@ -15,7 +15,8 @@ const Footer = () => {
             <span className="text-primary">$</span> echo "Thanks for visiting!"
           </p>
           <p className="text-sm text-muted-foreground mt-4">
-            © {new Date().getFullYear()} {personalInfo.name}
+            © {new Date().getFullYear()} {personalInfo.name}. Built with{" "}
+            <span className="text-primary">♥</span>
           </p>
         </motion.div>
       </div>

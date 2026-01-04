@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { Mail, Phone, Github, Linkedin, MapPin, ExternalLink, Briefcase, GraduationCap, Code, Folder, Award, Sparkles } from "lucide-react";
 import { personalInfo, workExperience, education, skills, projects, certifications } from "@/data/portfolioData";
-import ThemeToggle from "@/components/portfolio/ThemeToggle";
 
 // Animation variants for staggered children
 const containerVariants = {
@@ -30,10 +29,10 @@ const itemVariants = {
 };
 
 const slideInLeft = {
-  hidden: { opacity: 0, x: -60 },
+  hidden: { opacity: 0, y: 30 },
   visible: {
     opacity: 1,
-    x: 0,
+    y: 0,
     transition: {
       type: "spring" as const,
       stiffness: 80,
@@ -43,10 +42,10 @@ const slideInLeft = {
 };
 
 const slideInRight = {
-  hidden: { opacity: 0, x: 60 },
+  hidden: { opacity: 0, y: 30 },
   visible: {
     opacity: 1,
-    x: 0,
+    y: 0,
     transition: {
       type: "spring" as const,
       stiffness: 80,
@@ -95,7 +94,7 @@ const GlassCard = ({
       whileInView="visible"
       viewport={{ once: true, margin: "-50px" }}
       transition={{ delay }}
-      className={`relative backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-6 ${glow ? 'shadow-[0_0_40px_-10px_hsl(var(--primary))]' : ''} hover:bg-white/10 hover:border-white/20 transition-all duration-500 ${className}`}
+      className={`relative backdrop-blur-xl bg-white/5 border-white/10 hover:bg-white/10 hover:border-white/20 border rounded-2xl p-6 ${glow ? 'shadow-[0_0_40px_-10px_hsl(var(--primary))]' : ''} transition-all duration-500 ${className}`}
     >
       {children}
     </motion.div>
@@ -104,8 +103,7 @@ const GlassCard = ({
 
 const GlassmorphismPortfolio = () => {
   return (
-    <div className="min-h-screen bg-[#0a0a0f] text-white overflow-hidden">
-      <ThemeToggle />
+    <div className="min-h-screen overflow-hidden bg-[#0a0a0f] text-white">
       
       {/* Ambient Background */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
@@ -210,7 +208,7 @@ const GlassmorphismPortfolio = () => {
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-3 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm hover:bg-primary/20 hover:border-primary/50 hover:shadow-[0_0_20px_-5px_hsl(var(--primary))] transition-all duration-300"
+                    className="p-3 rounded-xl bg-white/5 border-white/10 border backdrop-blur-sm hover:bg-primary/20 hover:border-primary/50 hover:shadow-[0_0_20px_-5px_hsl(var(--primary))] transition-all duration-300"
                   >
                     <link.icon className="w-5 h-5" />
                   </a>
@@ -273,21 +271,26 @@ const GlassmorphismPortfolio = () => {
                     </div>
                     <span className="text-sm text-white/40 font-mono">{job.dates}</span>
                   </div>
-                  <motion.div 
-                    variants={containerVariants}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true }}
-                    className="space-y-4"
-                  >
-                    {job.highlights.map((highlight) => (
+                  <div className="space-y-4">
+                    {job.highlights.map((highlight, hIndex) => (
                       <motion.div 
                         key={highlight.title} 
-                        variants={itemVariants}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: hIndex * 0.1 }}
                         className="border-l-2 border-primary/50 pl-4"
                       >
                         <h4 className="font-semibold text-white/90">{highlight.title}</h4>
-                        <p className="text-sm text-white/50 mt-1">{highlight.description}</p>
+                        {highlight.description.length === 1 ? (
+                          <p className="text-sm text-white/50 mt-1">{highlight.description[0]}</p>
+                        ) : (
+                          <ul className="list-disc list-outside ml-4 mt-1 space-y-1">
+                            {highlight.description.map((desc, idx) => (
+                              <li key={idx} className="text-sm text-white/50">{desc}</li>
+                            ))}
+                          </ul>
+                        )}
                         <div className="flex flex-wrap gap-2 mt-2">
                           {highlight.keywords.map((keyword) => (
                             <span key={keyword} className="px-2 py-1 text-xs rounded-lg bg-primary/10 text-primary border border-primary/20">
@@ -297,7 +300,7 @@ const GlassmorphismPortfolio = () => {
                         </div>
                       </motion.div>
                     ))}
-                  </motion.div>
+                  </div>
                 </GlassCard>
               ))}
             </motion.div>
@@ -341,7 +344,7 @@ const GlassmorphismPortfolio = () => {
                           key={skill}
                           variants={scaleUp}
                           whileHover={{ scale: 1.05, y: -2 }}
-                          className="px-4 py-2 text-sm rounded-xl bg-white/5 border border-white/10 hover:bg-primary/20 hover:border-primary/30 hover:shadow-[0_0_15px_-3px_hsl(var(--primary))] transition-all duration-300 cursor-default"
+                          className="px-4 py-2 text-sm rounded-xl bg-white/5 border-white/10 border hover:bg-primary/20 hover:border-primary/30 hover:shadow-[0_0_15px_-3px_hsl(var(--primary))] transition-all duration-300 cursor-default"
                         >
                           {skill}
                         </motion.span>
@@ -383,7 +386,7 @@ const GlassmorphismPortfolio = () => {
                   rel="noopener noreferrer"
                   variants={index % 2 === 0 ? slideInLeft : slideInRight}
                   whileHover={{ scale: 1.02, y: -5 }}
-                  className="group relative backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 hover:border-primary/50 hover:shadow-[0_0_40px_-10px_hsl(var(--primary))] transition-all duration-500"
+                  className="group relative backdrop-blur-xl bg-white/5 border-white/10 hover:bg-white/10 border rounded-2xl p-6 hover:border-primary/50 hover:shadow-[0_0_40px_-10px_hsl(var(--primary))] transition-all duration-500"
                 >
                   <div className="flex items-start justify-between mb-3">
                     <Folder className="w-8 h-8 text-primary" />
@@ -484,19 +487,6 @@ const GlassmorphismPortfolio = () => {
             </GlassCard>
           </div>
         </section>
-
-        {/* Footer */}
-        <footer className="py-20 px-4 text-center">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-          >
-            <p className="text-white/30 text-sm">
-              © {new Date().getFullYear()} {personalInfo.name}
-            </p>
-          </motion.div>
-        </footer>
       </div>
     </div>
   );
