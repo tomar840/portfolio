@@ -2,102 +2,21 @@ import { motion } from "framer-motion";
 import { Mail, Phone, Github, Linkedin, MapPin, ExternalLink, Briefcase, GraduationCap, Code, Folder, Award, Sparkles } from "lucide-react";
 import { personalInfo, workExperience, education, skills, projects, certifications } from "@/data/portfolioData";
 
-// Animation variants for staggered children
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.1,
-    },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 40, scale: 0.95 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: {
-      type: "spring" as const,
-      stiffness: 100,
-      damping: 15,
-    },
-  },
-};
-
-const slideInLeft = {
-  hidden: { opacity: 0, y: 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      type: "spring" as const,
-      stiffness: 80,
-      damping: 20,
-    },
-  },
-};
-
-const slideInRight = {
-  hidden: { opacity: 0, y: 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      type: "spring" as const,
-      stiffness: 80,
-      damping: 20,
-    },
-  },
-};
-
-const scaleUp = {
-  hidden: { opacity: 0, scale: 0.8 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    transition: {
-      type: "spring" as const,
-      stiffness: 100,
-      damping: 15,
-    },
-  },
-};
-
 const GlassCard = ({ 
   children, 
   className = "",
-  delay = 0,
   glow = false,
-  variant = "default"
 }: { 
   children: React.ReactNode; 
   className?: string;
-  delay?: number;
   glow?: boolean;
-  variant?: "default" | "left" | "right" | "scale";
 }) => {
-  const variants = {
-    default: itemVariants,
-    left: slideInLeft,
-    right: slideInRight,
-    scale: scaleUp,
-  };
-
   return (
-    <motion.div
-      variants={variants[variant]}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ delay }}
+    <div
       className={`relative backdrop-blur-xl bg-white/5 border-white/10 hover:bg-white/10 hover:border-white/20 border rounded-2xl p-6 ${glow ? 'shadow-[0_0_40px_-10px_hsl(var(--primary))]' : ''} transition-all duration-500 ${className}`}
     >
       {children}
-    </motion.div>
+    </div>
   );
 };
 
@@ -221,21 +140,14 @@ const GlassmorphismPortfolio = () => {
         {/* About Section */}
         <section className="py-20 px-4">
           <div className="max-w-4xl mx-auto">
-            <GlassCard glow variant="scale">
-              <motion.div
-                variants={containerVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-              >
-                <motion.div variants={itemVariants} className="flex items-center gap-3 mb-4">
-                  <Sparkles className="w-6 h-6 text-primary" />
-                  <h2 className="text-2xl font-bold">About Me</h2>
-                </motion.div>
-                <motion.p variants={itemVariants} className="text-lg text-white/70 leading-relaxed">
-                  {personalInfo.about}
-                </motion.p>
-              </motion.div>
+            <GlassCard glow>
+              <div className="flex items-center gap-3 mb-4">
+                <Sparkles className="w-6 h-6 text-primary" />
+                <h2 className="text-2xl font-bold">About Me</h2>
+              </div>
+              <p className="text-lg text-white/70 leading-relaxed">
+                {personalInfo.about}
+              </p>
             </GlassCard>
           </div>
         </section>
@@ -244,26 +156,14 @@ const GlassmorphismPortfolio = () => {
         {/* Experience Section */}
         <section className="py-20 px-4">
           <div className="max-w-4xl mx-auto">
-            <motion.h2
-              variants={slideInLeft}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              className="text-3xl md:text-4xl font-bold mb-12 flex items-center gap-3"
-            >
+            <h2 className="text-3xl md:text-4xl font-bold mb-12 flex items-center gap-3">
               <Briefcase className="w-8 h-8 text-primary" />
               Experience
-            </motion.h2>
+            </h2>
 
-            <motion.div 
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-50px" }}
-              className="space-y-6"
-            >
-              {workExperience.map((job, index) => (
-                <GlassCard key={job.company} variant={index % 2 === 0 ? "left" : "right"}>
+            <div className="space-y-6">
+              {workExperience.map((job) => (
+                <GlassCard key={job.company}>
                   <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-4">
                     <div>
                       <h3 className="text-xl font-bold">{job.company}</h3>
@@ -272,13 +172,9 @@ const GlassmorphismPortfolio = () => {
                     <span className="text-sm text-white/40 font-mono">{job.dates}</span>
                   </div>
                   <div className="space-y-4">
-                    {job.highlights.map((highlight, hIndex) => (
-                      <motion.div 
+                    {job.highlights.map((highlight) => (
+                      <div 
                         key={highlight.title} 
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: hIndex * 0.1 }}
                         className="border-l-2 border-primary/50 pl-4"
                       >
                         <h4 className="font-semibold text-white/90">{highlight.title}</h4>
@@ -298,61 +194,41 @@ const GlassmorphismPortfolio = () => {
                             </span>
                           ))}
                         </div>
-                      </motion.div>
+                      </div>
                     ))}
                   </div>
                 </GlassCard>
               ))}
-            </motion.div>
+            </div>
           </div>
         </section>
 
         {/* Skills Section */}
         <section className="py-20 px-4">
           <div className="max-w-4xl mx-auto">
-            <motion.h2
-              variants={slideInRight}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              className="text-3xl md:text-4xl font-bold mb-12 flex items-center gap-3"
-            >
+            <h2 className="text-3xl md:text-4xl font-bold mb-12 flex items-center gap-3">
               <Code className="w-8 h-8 text-primary" />
               Tech Stack
-            </motion.h2>
+            </h2>
 
-            <GlassCard glow variant="scale">
-              <motion.div 
-                variants={containerVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                className="space-y-6"
-              >
-                {Object.entries(skills).map(([category, skillList], index) => (
-                  <motion.div key={category} variants={itemVariants}>
+            <GlassCard glow>
+              <div className="space-y-6">
+                {Object.entries(skills).map(([category, skillList]) => (
+                  <div key={category}>
                     <h3 className="text-sm font-semibold text-primary mb-3">{category}</h3>
-                    <motion.div 
-                      variants={containerVariants}
-                      initial="hidden"
-                      whileInView="visible"
-                      viewport={{ once: true }}
-                      className="flex flex-wrap gap-2"
-                    >
-                      {skillList.map((skill, skillIndex) => (
-                        <motion.span
+                    <div className="flex flex-wrap gap-2">
+                      {skillList.map((skill) => (
+                        <span
                           key={skill}
-                          variants={scaleUp}
-                          whileHover={{ scale: 1.05, y: -2 }}
                           className="px-4 py-2 text-sm rounded-xl bg-white/5 border-white/10 border hover:bg-primary/20 hover:border-primary/30 hover:shadow-[0_0_15px_-3px_hsl(var(--primary))] transition-all duration-300 cursor-default"
                         >
                           {skill}
-                        </motion.span>
+                        </span>
                       ))}
-                    </motion.div>
-                  </motion.div>
+                    </div>
+                  </div>
                 ))}
-              </motion.div>
+              </div>
             </GlassCard>
           </div>
         </section>
@@ -360,33 +236,19 @@ const GlassmorphismPortfolio = () => {
         {/* Projects Section */}
         <section className="py-20 px-4">
           <div className="max-w-4xl mx-auto">
-            <motion.h2
-              variants={slideInLeft}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              className="text-3xl md:text-4xl font-bold mb-12 flex items-center gap-3"
-            >
+            <h2 className="text-3xl md:text-4xl font-bold mb-12 flex items-center gap-3">
               <Folder className="w-8 h-8 text-primary" />
               Projects
-            </motion.h2>
+            </h2>
 
-            <motion.div 
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-50px" }}
-              className="grid md:grid-cols-2 gap-6"
-            >
-              {projects.map((project, index) => (
-                <motion.a
+            <div className="grid md:grid-cols-2 gap-6">
+              {projects.map((project) => (
+                <a
                   key={project.title}
                   href={project.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  variants={index % 2 === 0 ? slideInLeft : slideInRight}
-                  whileHover={{ scale: 1.02, y: -5 }}
-                  className="group relative backdrop-blur-xl bg-white/5 border-white/10 hover:bg-white/10 border rounded-2xl p-6 hover:border-primary/50 hover:shadow-[0_0_40px_-10px_hsl(var(--primary))] transition-all duration-500"
+                  className="group relative backdrop-blur-xl bg-white/5 border-white/10 hover:bg-white/10 border rounded-2xl p-6 hover:border-primary/50 hover:shadow-[0_0_40px_-10px_hsl(var(--primary))] hover:scale-[1.02] hover:-translate-y-1 transition-all duration-500"
                 >
                   <div className="flex items-start justify-between mb-3">
                     <Folder className="w-8 h-8 text-primary" />
@@ -401,35 +263,23 @@ const GlassmorphismPortfolio = () => {
                       </span>
                     ))}
                   </div>
-                </motion.a>
+                </a>
               ))}
-            </motion.div>
+            </div>
           </div>
         </section>
 
         {/* Education Section */}
         <section className="py-20 px-4">
           <div className="max-w-4xl mx-auto">
-            <motion.h2
-              variants={slideInRight}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              className="text-3xl md:text-4xl font-bold mb-12 flex items-center gap-3"
-            >
+            <h2 className="text-3xl md:text-4xl font-bold mb-12 flex items-center gap-3">
               <GraduationCap className="w-8 h-8 text-primary" />
               Education
-            </motion.h2>
+            </h2>
 
-            <motion.div 
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-50px" }}
-              className="grid md:grid-cols-2 gap-6"
-            >
-              {education.map((edu, index) => (
-                <GlassCard key={edu.institution} variant={index % 2 === 0 ? "left" : "right"}>
+            <div className="grid md:grid-cols-2 gap-6">
+              {education.map((edu) => (
+                <GlassCard key={edu.institution}>
                   <h3 className="text-lg font-bold">{edu.institution}</h3>
                   <p className="text-primary mt-1">{edu.degree}</p>
                   <div className="flex items-center gap-3 mt-3 text-sm text-white/50">
@@ -439,38 +289,24 @@ const GlassmorphismPortfolio = () => {
                   </div>
                 </GlassCard>
               ))}
-            </motion.div>
+            </div>
           </div>
         </section>
 
         {/* Certifications */}
         <section className="py-20 px-4">
           <div className="max-w-4xl mx-auto">
-            <motion.h2
-              variants={slideInLeft}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              className="text-3xl md:text-4xl font-bold mb-12 flex items-center gap-3"
-            >
+            <h2 className="text-3xl md:text-4xl font-bold mb-12 flex items-center gap-3">
               <Award className="w-8 h-8 text-primary" />
               Certifications
-            </motion.h2>
+            </h2>
 
-            <GlassCard variant="scale">
-              <motion.div 
-                variants={containerVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                className="space-y-4"
-              >
-                {certifications.map((cert, index) => (
-                  <motion.div 
+            <GlassCard>
+              <div className="space-y-4">
+                {certifications.map((cert) => (
+                  <div 
                     key={cert.name} 
-                    variants={itemVariants}
-                    whileHover={{ x: 10 }}
-                    className="flex items-start gap-4 p-3 rounded-xl hover:bg-white/5 transition-colors"
+                    className="flex items-start gap-4 p-3 rounded-xl hover:bg-white/5 hover:translate-x-2 transition-all duration-300"
                   >
                     <Award className="w-5 h-5 text-primary shrink-0 mt-1" />
                     <div className="flex-1">
@@ -481,9 +317,9 @@ const GlassmorphismPortfolio = () => {
                       <span className="text-sm text-white/40">{cert.date}</span>
                       {cert.grade && <p className="text-xs text-primary mt-1">{cert.grade}</p>}
                     </div>
-                  </motion.div>
+                  </div>
                 ))}
-              </motion.div>
+              </div>
             </GlassCard>
           </div>
         </section>
